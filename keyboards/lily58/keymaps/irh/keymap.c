@@ -36,13 +36,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // Layer 1 - Numbers and symbols
   [L_1] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,EXLM,AT  ,LCBR,RCBR,PIPE,               BSLS, P7 , P8 , P9 ,ASTR,    ,
+         ,EXLM,AT  ,LCBR,RCBR,PIPE,               BSLS, 7  , 8  , 9  ,ASTR,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,HASH,DLR ,LPRN,RPRN,GRV ,               PIPE, P4 , P5 , P6 ,SLSH,    ,
+         ,HASH,DLR ,LPRN,RPRN,GRV ,               PIPE, 4  , 5  , 6  ,SLSH,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,PERC,CIRC,LBRC,RBRC,TILD,               AMPR, P1 , P2 , P3 ,PLUS,    ,
+         ,PERC,CIRC,LBRC,RBRC,TILD,               AMPR, 1  , 2  , 3  ,PLUS,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,    , P0 , EQL, DOT,MINS,    ,
+         ,    ,    ,    ,    ,    ,    ,         ,    , 0  , EQL, DOT,MINS,    ,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
                       ,    ,    ,    ,             ,    ,    ,
   //             `----+----+----+----'        `----+----+----+----'
