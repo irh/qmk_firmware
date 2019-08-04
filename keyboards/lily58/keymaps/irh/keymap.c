@@ -27,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     LCAG(KC_H),TG(L_4),KC_LCTL,KC_LALT, KC_LCMD, L1_BSPC, _______,          _______, L1_SPACE,KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
+     LCAG(KC_H),TG(L_4),KC_LCTL,KC_LALT, KC_LCMD, L1_BSPC, KC_DEL,           KC_UNDS, L1_SPACE,KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                            KC_F15,  KC_F16,  L3_F17,  L2_TAB,                    L2_ENTER,KC_F18,  KC_F19,  KC_F20
   //                      └────────┴────────┴────────┴────────┘                 └────────┴────────┴────────┴────────┘
