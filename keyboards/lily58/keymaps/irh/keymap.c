@@ -8,6 +8,8 @@
   #include "ssd1306.h"
 #endif
 
+#include <print.h>
+
 extern keymap_config_t keymap_config;
 
 extern uint8_t is_master;
@@ -106,10 +108,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable = true;
+  debug_matrix = true;
+
+  //debug_keyboard = true;
+  //debug_mouse = true;
+
+  print("keyboard_post_init_user\n");
+}
+
 void matrix_init_user(void) {
     //SSD1306 OLED init, make sure to add #define SSD1306OLED in config.h
     #ifdef SSD1306OLED
         iota_gfx_init(!has_usb());   // turns on the display
+        print("matrix_init_user\n");
     #endif
 }
 
@@ -130,10 +144,12 @@ const char *read_keylogs(void);
 
 void matrix_scan_user(void) {
    iota_gfx_task();
+    print("matrix_scan_user\n");
 }
 
 void matrix_render_user(struct CharacterMatrix *matrix) {
   if (is_master) {
+    print("matrix_scan_user - master\n");
     // If you want to change the display of OLED, you need to change here
     matrix_write_ln(matrix, read_layer_state());
     matrix_write_ln(matrix, read_keylog());
@@ -142,6 +158,7 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
     //matrix_write_ln(matrix, read_host_led_state());
     //matrix_write_ln(matrix, read_timelog());
   } else {
+    print("matrix_scan_user - not-master\n");
     matrix_write(matrix, read_logo());
   }
 }
@@ -154,6 +171,7 @@ void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *s
 }
 
 void iota_gfx_task_user(void) {
+  print("iota_gfx_task_user\n");
   struct CharacterMatrix matrix;
   matrix_clear(&matrix);
   matrix_render_user(&matrix);
