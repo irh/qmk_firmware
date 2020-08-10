@@ -43,20 +43,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,   _______,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,
         LCAG(KC_H), TG(L_3), KC_LCTL, KC_LALT, KC_LCMD, LT(L_1, KC_BSPC), LT(L_2, KC_TAB),
-        _______, _______, KC_F15,  KC_F16,  LT(L_3, KC_F17),
+        _______, _______, KC_F14,  KC_F15,  KC_F16,
                                                      _______, _______,
                                                               _______,
-                                            _______, _______, _______,
+                                            KC_F17, _______, _______,
 
         // right hand
         _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MPLY,
         _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
                  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         LT(L_2, KC_ENTER), LT(L_1, KC_SPACE), KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
-                 KC_F18,  KC_F19,  KC_F20,  _______, _______,
-        _______, _______,
+                 KC_F19,  KC_F20,  KC_F21,  _______, _______,
+        KC_F19,  KC_F20,
         _______,
-        _______, _______, _______
+        _______, _______, KC_F18
     ),
 
 /* Layer 1 - symbols
