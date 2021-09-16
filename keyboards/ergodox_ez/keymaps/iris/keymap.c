@@ -3,10 +3,10 @@
 #include "action_layer.h"
 #include "version.h"
 
-#define L_0 0 // default layer
-#define L_1 1 // symbols
-#define L_2 2 // navigation
-#define L_3 3 // colemak mod dh
+#define L_0 0 // base layer
+#define L_1 1 // qwerty
+#define L_2 2 // symbols
+#define L_3 3 // navigation
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
@@ -16,7 +16,7 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* Layer 0 - base layer, Colemak DH
+/* Layer 0 - base layer, Colemak Mod DH
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * | F3     |   Q  |   W  |   F  |   P  |   B  |      |           |      |   J  |   L  |   U  |   Y  |   ;  |  PLAY  |
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F3,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,   _______,
         KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,   _______,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,
-        LCAG(KC_M), TG(L_3), KC_LCTL, KC_LALT, KC_LCMD, LT(L_1, KC_BSPC), LT(L_2, KC_TAB),
+        LCAG(KC_M), TG(L_1), KC_LCTL, KC_LALT, KC_LCMD, LT(L_2, KC_BSPC), LT(L_3, KC_TAB),
         _______, _______, KC_F14,  KC_F15,  KC_F16,
                                                     _______, _______,
                                                              _______,
@@ -52,14 +52,57 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MPLY,
         _______, KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
                  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        LT(L_2, KC_ENTER), LT(L_1, KC_SPACE), KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
+        LT(L_3, KC_ENTER), LT(L_2, KC_SPACE), KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
                  KC_F19,  KC_F20,  KC_F21,  _______, _______,
         KC_F19,  KC_F20,
         _______,
         _______, _______, KC_F18
     ),
 
-/* Layer 1 - symbols
+/* Layer 1 - QWERTY
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |        |   Q  |   W  |   E  |   R  |   T  |      |           |      |   Y  |   U  |   I  |   O  |   P  |        |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * |        |   A  |   S  |   D  |   F  |   G  |      |           |      |   H  |   J  |   K  |   L  |   ;  |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |   Z  |   X  |   C  |   V  |   B  |------|           |------|   N  |   M  |   ,  |   .  |   /  |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |        |
+ *   `----------------------------------'                                       `------------------------------------'
+ *                                        ,-------------.       ,------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+[L_1] = LAYOUT_ergodox(
+        // left hand
+        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,
+        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,
+        _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,
+        _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______,  _______,
+                                                     _______, _______,
+                                                              _______,
+                                            _______, _______, _______,
+
+        // right hand
+        _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MPLY,
+        _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        _______, _______, _______, _______, _______, _______, _______,
+                 _______, _______, _______, _______, _______,
+        _______, _______,
+        _______,
+        _______, _______, _______
+),
+
+/* Layer 2 - symbols
  *
  * ,---------------------------------------------------.           ,--------------------------------------------------.
  * |         |   !  |   @  |   {  |   }  |   |  |      |           |      |   \  |   7  |   8  |   9  |   *  |        |
@@ -80,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[L_1] = LAYOUT_ergodox(
+[L_2] = LAYOUT_ergodox(
        // left hand
        _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE, _______,
        _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,  _______,
@@ -102,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______, _______, _______
 ),
 
-/* Layer 2 - navigation
+/* Layer 3 - navigation
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -123,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[L_2] = LAYOUT_ergodox(
+[L_3] = LAYOUT_ergodox(
        // left hand
        _______, _______, _______, _______, _______, _______, _______,
        _______, _______, KC_EXLM, KC_EQL,  KC_MINS, KC_PLUS, _______,
@@ -145,53 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______, _______, _______
 ),
 
-/* Layer 3 - QWERTY
- *
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |   Q  |   W  |   E  |   R  |   T  |      |           |      |   Y  |   U  |   I  |   O  |   P  |        |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |   A  |   S  |   D  |   F  |   G  |      |           |      |   H  |   J  |   K  |   L  |   ;  |        |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |   Z  |   X  |   C  |   V  |   B  |------|           |------|   N  |   M  |   ,  |   .  |   /  |        |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |      |      |      |        |
- *   `----------------------------------'                                       `------------------------------------'
- *                                        ,-------------.       ,------------.
- *                                        |      |      |       |      |      |
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |      |
- *                                 |      |      |------|       |------|      |      |
- *                                 |      |      |      |       |      |      |      |
- *                                 `--------------------'       `--------------------'
- */
-[L_3] = LAYOUT_ergodox(
-        // left hand
-        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,
-        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,
-        _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,
-        _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, _______, _______,  _______,
-                                                     _______, _______,
-                                                              _______,
-                                            _______, _______, _______,
-
-        // right hand
-        _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MPLY,
-        _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        _______, _______, _______, _______, _______, _______, _______,
-                 _______, _______, _______, _______, _______,
-        _______, _______,
-        _______,
-        _______, _______, _______
-    ),
-};
-
-const uint16_t PROGMEM fn_actions[] = {
-    [1] = ACTION_LAYER_TAP_TOGGLE(L_1)                // FN1 - Momentary Layer 1 (Symbols)
-};
+}; // End of layers
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
@@ -269,7 +266,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         #endif
         break;
       case 1:
-        /* ergodox_right_led_1_on(); */
+        ergodox_right_led_3_on();
         #ifdef RGBLIGHT_COLOR_LAYER_1
           rgblight_setrgb(RGBLIGHT_COLOR_LAYER_1);
         #endif
@@ -281,7 +278,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         #endif
         break;
       case 3:
-        ergodox_right_led_3_on();
+        /* ergodox_right_led_3_on(); */
         #ifdef RGBLIGHT_COLOR_LAYER_3
           rgblight_setrgb(RGBLIGHT_COLOR_LAYER_3);
         #endif
