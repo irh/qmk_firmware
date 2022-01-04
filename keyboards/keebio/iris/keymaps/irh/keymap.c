@@ -25,16 +25,16 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  // Layer 0 - Base QWERTY layer
+  // Layer 0 - base layer, Colemak Mod DH
   [L_0] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     KC_F3,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MPLY,
+     KC_F3,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                               KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MPLY,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+     KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                               KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                               KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     LCAG(KC_H),TG(L_4),KC_LCTL,KC_LALT, KC_LCMD, L1_BSPC, L2_TAB,           L2_ENTER,L1_SPACE,KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
+     LCAG(KC_M),TG(L_4),KC_LCTL,KC_LALT, KC_LCMD, L1_BSPC, L2_TAB,           L2_ENTER,L1_SPACE,KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     KC_F15,  KC_F16,  L3_F17,                    KC_F18,  KC_F19,  KC_F20
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -49,19 +49,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,PERC,CIRC,LBRC,RBRC,TILD,               AMPR, P1 , P2 , P3 ,PLUS,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,    , P0 , EQL, DOT,MINS,    ,
+         ,    ,    ,    ,    ,    ,SCLN,     COLN,    , P0 , EQL, DOT,MINS,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,    ,             ,    ,
   //                  `----+----+----'        `----+----+----'
   ),
 
   // Layer 2 - Navigation and connecting symbols
-  //           VIM keys reversed through Colemak Mod DH software mapping
   [L_2] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
          ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,EXLM,EQL ,MINS,PLUS,               M   ,Y   ,N   ,U   ,    ,    ,
+         ,    ,EXLM,EQL ,MINS,PLUS,               H   ,J   ,K   ,L   ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,                   ,    ,UP  ,    ,    ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
@@ -87,14 +86,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
 
-  // Layer 4 - Reverse of Colemak Mod DH software mapping to QWERTY
+  // Layer 4 - QWERTY
   [L_4] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    , K  , S  , F  ,                O  , I  , L  ,SCLN, R  ,    ,
+         , Q  , W  , E  , R  , T  ,                Y  , U  , I  , O  , P  ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    , D  , V  , E  ,    ,                M  , Y  , N  , U  , P  ,    ,
+         , A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    , B  , T  ,                J  , H  ,    ,    ,    ,    ,
+         , Z  , X  , C  , V  , B  ,                N  , M  ,    ,    ,    ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,    ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
