@@ -8,6 +8,9 @@
 #define L_2 2 // symbols
 #define L_3 3 // navigation
 
+
+#define LAG(kc) (QK_LALT | QK_LGUI | (kc))
+
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
   EPRM,
@@ -42,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_F3,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,   _______,
         KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,   _______,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,
-        LCAG(KC_M), TG(L_1), KC_LCTL, KC_LALT, KC_LCMD, LT(L_2, KC_BSPC), LT(L_3, KC_TAB),
+        LAG(KC_F), TG(L_1), KC_LCTL, KC_LALT, KC_LCMD, LT(L_2, KC_BSPC), LT(L_3, KC_TAB),
         _______, _______, KC_F14,  KC_F15,  KC_F16,
                                                     KC_MRWD, KC_MFFD,
                                                              _______,
@@ -52,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MPLY,
         _______, KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
                  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        LT(L_3, KC_ENTER), LT(L_2, KC_SPACE), KC_RCMD, KC_RALT, KC_RCTL, LCAG(KC_LEFT), LCAG(KC_RIGHT),
+        LT(L_3, KC_ENTER), LT(L_2, KC_SPACE), KC_RCMD, KC_RALT, KC_RCTL, LAG(KC_LEFT), LAG(KC_RIGHT),
                  KC_F19,  KC_F20,  KC_F21,  _______, _______,
         KC_VOLD, KC_VOLU,
         _______,
