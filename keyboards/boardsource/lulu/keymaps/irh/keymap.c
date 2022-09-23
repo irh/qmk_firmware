@@ -34,7 +34,7 @@ enum layers {
 #define LOWER MO(_LOWER)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
- 
+
 /* Layer 0 - Base layer
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * | F3   |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   ;  | PLAY |
@@ -117,3 +117,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //             `----+----+----+----'        `----+----+----+----'
   ),
 };
+
+#ifdef RGBLIGHT_ENABLE
+
+const rgblight_segment_t PROGMEM layer_0[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_OFF});
+const rgblight_segment_t PROGMEM layer_1[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_OFF});
+const rgblight_segment_t PROGMEM layer_2[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_OFF});
+const rgblight_segment_t PROGMEM layer_3[] = RGBLIGHT_LAYER_SEGMENTS({30, 1, HSV_ORANGE});
+const rgblight_segment_t PROGMEM layer_4[] = RGBLIGHT_LAYER_SEGMENTS({30, 1, HSV_WHITE});
+
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    layer_0, layer_1, layer_2, layer_3, layer_4
+);
+
+void keyboard_post_init_user(void) {
+    // Show a power-on flash
+    rgblight_enable_noeeprom();
+    rgblight_sethsv_noeeprom(HSV_GREEN);
+    wait_ms(100);
+    rgblight_sethsv_noeeprom(HSV_OFF);
+
+    // Enable the LED layers
+    rgblight_enable();
+    rgblight_layers = my_rgb_layers;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, L_0));
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, L_0));
+    rgblight_set_layer_state(1, layer_state_cmp(state, L_1));
+    rgblight_set_layer_state(2, layer_state_cmp(state, L_2));
+    rgblight_set_layer_state(3, layer_state_cmp(state, L_3));
+    rgblight_set_layer_state(4, layer_state_cmp(state, L_4));
+
+    return state;
+}
+
+#endif // RGBLIGHT_ENABLE
