@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                       KC_M,          KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                       KC_K,          KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
     LAG(KC_F),TG(L_4),KC_LCTL, KC_LALT, KC_LCMD, LTX(1, BSPC),  KC_,   KC_,  LTX(1, SPACE), KC_RCMD, KC_RALT, KC_RCTL, LAG(KC_LEFT),LAG(KC_RIGHT),
-                            KC_F15,  KC_F16, LTX(3, F17), LTX(2, TAB),   LTX(2, ENTER), KC_F18,  KC_F19,  KC_F20
+                            KC_F14,  KC_F15, LTX(3, F16), LTX(2, TAB),   LTX(2, ENTER), KC_F17,  KC_F18,  KC_F19
   ),
 
   // Layer 1 - Numbers and symbols
