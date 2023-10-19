@@ -37,24 +37,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Layer 0 - Base layer
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | F3   |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   ;  | PLAY |
+ * | F3   |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   ;  |  L4  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  |   A  |   R  |   S  |   T  |   G  |                    |   M  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   D  |   V  |-------.    ,-------|   K  |   H  |   ,  |   .  |   /  |RShift|
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |      | LCtl | LAlt | LCmd |Bks/L1|-------|    |-------|Spc/L1| RCmd | RAlt | RCtl |      |      |
+ * |------+------+------+------+------+------| Play  |    |  Tab  |------+------+------+------+------+------|
+ * |LAG+F |  L4  | LCtl | LAlt | LCmd |Bks/L1|-------|    |-------|Spc/L1| RCmd | RAlt | RCtl |LAG+← |LAG+→ |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |      |      |      | /Tab/L2 /       \Ent/L2\  |RAISE |BackSP| RGUI |
+ *                   | F14  | F15  |F16/L3| /Tab/L2 /       \Ent/L2\  | F17  | F18  | F19  |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
   [L_0] = LAYOUT(
-    KC_F3,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                       KC_J,          KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MPLY,
-    KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                       KC_M,          KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                       KC_K,          KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-    LAG(KC_F),TG(L_4),KC_LCTL, KC_LALT, KC_LCMD, LTX(1, BSPC),  KC_,   KC_,  LTX(1, SPACE), KC_RCMD, KC_RALT, KC_RCTL, LAG(KC_LEFT),LAG(KC_RIGHT),
-                            KC_F14,  KC_F15, LTX(3, F16), LTX(2, TAB),   LTX(2, ENTER), KC_F17,  KC_F18,  KC_F19
+    KC_F3,     KC_Q,      KC_W,    KC_F,    KC_P,    KC_B,                           KC_J,          KC_L,    KC_U,    KC_Y,    KC_SCLN,     TG(L_4),
+    KC_ESC,    KC_A,      KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,          KC_N,    KC_E,    KC_I,    KC_O,        KC_QUOT,
+    KC_LSFT,   KC_Z,      KC_X,    KC_C,    KC_D,    KC_V,                           KC_K,          KC_H,    KC_COMM, KC_DOT,  KC_SLSH,     KC_RSFT,
+    LAG(KC_F), LAG(KC_C), KC_LCTL, KC_LALT, KC_LCMD, LTX(1, BSPC), KC_MPLY,     KC_TAB, LTX(1, SPACE), KC_RCMD, KC_RALT, KC_RCTL, LAG(KC_LEFT),LAG(KC_RIGHT),
+                               KC_F14,  KC_F15, LTX(3, F16), LTX(2, TAB),       LTX(2, ENTER), KC_F17,  KC_F18,  KC_F19
   ),
 
   // Layer 1 - Numbers and symbols
@@ -156,6 +156,23 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(4, layer_state_cmp(state, L_4));
 
     return state;
+}
+
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (clockwise) {
+            tap_code(KC_MNXT);
+        } else {
+            tap_code(KC_MPRV);
+        }
+    } else if (index == 1) {
+        if (clockwise) {
+            tap_code(KC_WH_U);
+        } else {
+            tap_code(KC_WH_D);
+        }
+    }
+    return false;
 }
 
 #endif // RGBLIGHT_ENABLE
