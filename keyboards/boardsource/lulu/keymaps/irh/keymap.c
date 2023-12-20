@@ -28,6 +28,7 @@ enum layers {
     L_2, // Navigation
     L_3, // Mouse
     L_4, // Qwerty
+    L_5, // Debugging
 };
 
 #define RAISE MO(_RAISE)
@@ -45,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------| Play  |    |  Tab  |------+------+------+------+------+------|
  * |LAG+F |  L4  | LCtl | LAlt | LCmd |Bks/L1|-------|    |-------|Spc/L1| RCmd | RAlt | RCtl |LAG+← |LAG+→ |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | F14  | F15  |F16/L3| /Tab/L2 /       \Ent/L2\  | F17  | F18  | F19  |
+ *                   |F14/L5| F15  |F16/L3| /Tab/L2 /       \Ent/L2\  | F17  | F18  | F19  |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -54,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,    KC_A,      KC_R,    KC_S,    KC_T,    KC_G,                           KC_M,          KC_N,    KC_E,    KC_I,    KC_O,        KC_QUOT,
     KC_LSFT,   KC_Z,      KC_X,    KC_C,    KC_D,    KC_V,                           KC_K,          KC_H,    KC_COMM, KC_DOT,  KC_SLSH,     KC_RSFT,
     LAG(KC_F), LAG(KC_C), KC_LCTL, KC_LALT, KC_LCMD, LTX(1, BSPC), KC_MPLY,     KC_TAB, LTX(1, SPACE), KC_RCMD, KC_RALT, KC_RCTL, LAG(KC_LEFT),LAG(KC_RIGHT),
-                               KC_F14,  KC_F15, LTX(3, F16), LTX(2, TAB),       LTX(2, ENTER), KC_F17,  KC_F18,  KC_F19
+                            LTX(5, F14), KC_F15, LTX(3, F16), LTX(2, TAB),       LTX(2, ENTER), KC_F17,  KC_F18,  KC_F19
   ),
 
   // Layer 1 - Numbers and symbols
@@ -77,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
          ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,EXLM,EQL ,MINS,PLUS,               H   ,J   ,K   ,L   ,    ,    ,
+         ,    ,EXLM,EQL ,MINS,PLUS,                H  , J  , K  , L  ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
          ,    ,    ,    ,    ,    ,                   ,    ,UP  ,    ,    ,    ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
@@ -110,6 +111,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       ,    ,    ,    ,             ,    ,    ,
   //             `----+----+----+----'        `----+----+----+----'
   ),
+
+  // Layer 5 - Debugging
+  [L_5] = LAYOUT_kc(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+         ,    ,    ,    ,    ,    ,                F6 , F7 , F8 , F9 ,F10 ,F11 ,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+         ,    ,    ,    ,    ,    ,    ,         ,    ,    ,    ,    ,    ,    ,
+  //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
+                      ,    ,    ,    ,             ,    ,    ,
+  //             `----+----+----+----'        `----+----+----+----'
+  ),
+
 };
 
 #ifdef RGBLIGHT_ENABLE
@@ -119,10 +136,11 @@ const rgblight_segment_t PROGMEM layer_1[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_
 const rgblight_segment_t PROGMEM layer_2[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_OFF});
 const rgblight_segment_t PROGMEM layer_3[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_ORANGE});
 const rgblight_segment_t PROGMEM layer_4[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_WHITE});
+const rgblight_segment_t PROGMEM layer_5[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_BLUE});
 
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    layer_0, layer_1, layer_2, layer_3, layer_4
+    layer_0, layer_1, layer_2, layer_3, layer_4, layer_5
 );
 
 void keyboard_post_init_user(void) {
@@ -148,6 +166,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(2, layer_state_cmp(state, L_2));
     rgblight_set_layer_state(3, layer_state_cmp(state, L_3));
     rgblight_set_layer_state(4, layer_state_cmp(state, L_4));
+    rgblight_set_layer_state(5, layer_state_cmp(state, L_5));
 
     return state;
 }
