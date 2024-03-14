@@ -28,16 +28,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   D  |   V  |------|           |------|   K  |   H  |   ,  |   .  |   /  | RShift |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      | LCtl | LAlt | LCmd |Bks/L1|Tab/L2|           |Ent/L2|Spc/L1| RCmd | RAlt | RCtl |      |        |
+ * | Full   |  L1  | LCtl | LAlt | LCmd |Bks/L2|Tab/L3|           |Ent/L3|Spc/L2| RCmd | RAlt | RCtl |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |      |      |      |        |
+ *   |      |      |      |  <<  |  >>  |                                       |  F18 |  F19 |  F20 |  <-- | -->    |
  *   `----------------------------------'                                       `------------------------------------'
  *                                        ,-------------.       ,------------.
- *                                        |      |      |       |      |      |
+ *                                        |  __  |  __  |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       |      |      |      |
- *                                 |  F15 | F16  |------|       |------| F17  | F18  |
- *                                 |      |      | <--  |       | -->  |      |      |
+ *                                 |  F16 |      |------|       |------|      | F17  |
+ *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
 [L_0] = LAYOUT_ergodox(
@@ -46,20 +46,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,   _______,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,
         LAG(KC_F), TG(L_1), KC_LCTL, KC_LALT, KC_LCMD, LT(L_2, KC_BSPC), LT(L_3, KC_TAB),
-        _______, _______, KC_F14,  KC_F15,  KC_F16,
-                                                    KC_MRWD, KC_MFFD,
+        _______, _______, _______, KC_MRWD, KC_MFFD,
+                                                    _______, _______,
                                                              _______,
-                                            KC_F17, _______, _______,
+                                            KC_F16, _______, _______,
 
         // right hand
         _______, KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MPLY,
         _______, KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
                  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
         LT(L_3, KC_ENTER), LT(L_2, KC_SPACE), KC_RCMD, KC_RALT, KC_RCTL, LAG(KC_LEFT), LAG(KC_RIGHT),
-                 KC_F19,  KC_F20,  KC_F21,  _______, _______,
-        KC_VOLD, KC_VOLU,
+                 KC_F18,  KC_F19,  KC_F20,  _______, _______,
+        _______, _______,
         _______,
-        _______, _______, KC_F18
+        _______, _______, KC_F17
     ),
 
 /* Layer 1 - QWERTY
@@ -138,11 +138,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            _______, _______, _______,
 
        // right hand
-       _______, KC_BSLASH, KC_7,    KC_8,    KC_9,    KC_ASTR, _______,
-       _______, KC_PIPE,   KC_4,    KC_5,    KC_6,    KC_SLSH, KC_BSLASH,
-                KC_AMPR,   KC_1,    KC_2,    KC_3,    KC_PLUS, _______,
-       KC_COLN, _______,   KC_0,    KC_EQL,  KC_DOT,  KC_MINS, _______,
-                           _______, _______, _______, _______, _______,
+       _______, KC_BSLS, KC_7,    KC_8,    KC_9,    KC_ASTR, _______,
+       _______, KC_PIPE, KC_4,    KC_5,    KC_6,    KC_SLSH, KC_BSLS,
+                KC_AMPR, KC_1,    KC_2,    KC_3,    KC_PLUS, _______,
+       KC_COLN, _______, KC_0,    KC_EQL,  KC_DOT,  KC_MINS, _______,
+                         _______, _______, _______, _______, _______,
        _______, _______,
        _______,
        _______, _______, _______
